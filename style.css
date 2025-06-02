@@ -134,3 +134,25 @@ body {
     margin-bottom: 20px;
 
 }
+
+.promot_container .input {
+
+    width: 100%;
+    line-height: 1.6;
+    resize: vertical;
+    font-size: 1.06rem;
+    padding: 16px;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    background: var(--color-input);
+    border-radius: 16px;
+
+}
+
+.promot_container .input:focus {
+
+    outline: none;
+    color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+
+}
