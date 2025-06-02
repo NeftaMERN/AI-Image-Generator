@@ -197,3 +197,15 @@ body {
     grid-template-columns: 1.2fr 1fr 1.1fr 1fr;
 
 }
+
+.select_container :where(.costom_sellect , .gnereat_btn) {
+
+    cursor: pointer;
+    background-color: var(--color-input);
+    outline: none;
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+    border-radius: 10px;
+    
+
+}
