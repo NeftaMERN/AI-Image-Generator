@@ -90,3 +90,10 @@ body {
     background: var(--color-gradient);
 
 }
+
+.header .logo_container h1 {
+
+    font-size: 1.9rem;
+    font-weight: 700;
+
+}
