@@ -131,6 +131,7 @@ body {
 .container .promot_container {
 
     width: 100%;
+    position: relative;
     margin-bottom: 20px;
 
 }
@@ -161,5 +162,16 @@ body {
     outline: none;
     color: var(--color-accent);
     box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+
+}
+
+.promot_container .promot-btn {
+
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 35px;
+    height: 35px;
+    background: var(--color-gradient);
 
 }
