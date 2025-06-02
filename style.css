@@ -172,6 +172,20 @@ body {
     bottom: 15px;
     width: 35px;
     height: 35px;
+    opacity: 0.8;
+    border: none;
+    color: #FFFFFF;
+    border-radius: 50%;
+    cursor: pointer;
     background: var(--color-gradient);
+    transition: all 0.3s ease;
+
+}
+
+.promot_container .promot-btn:hover {
+
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 
 }
