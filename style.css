@@ -257,6 +257,15 @@ body {
 
 }
 
+.gallery_grid .img_card .status_container {
+
+    padding: 15px;
+    flex-direction: column;
+    display: flex;
+    
+
+}
+
 .gallery_grid .img_card .resalt_img {
 
     width: 100%;
