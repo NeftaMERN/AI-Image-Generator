@@ -211,6 +211,13 @@ body {
 
 }
 
+.select_container .costom_sellect:is(:focus, :hover) {
+
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+
+}
+
 .select_container .gnereat_btn {
 
     background: var(--color-gradient);
