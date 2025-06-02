@@ -274,3 +274,16 @@ body {
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
 
 }
+
+.gallery_grid .img_card .img_dawnlod_btn {
+
+    width: 45px;
+    height: 45px;
+    backdrop-filter: 5;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    background: rgba(225, 235, 235, 0.25);
+
+}
