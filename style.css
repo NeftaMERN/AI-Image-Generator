@@ -262,7 +262,9 @@ body {
     padding: 15px;
     flex-direction: column;
     display: flex;
-    
+    gap: 13px;
+    align-items: center;
+
 
 }
 
@@ -343,5 +345,13 @@ body {
         transform: rotate(360deg);
 
     }
+
+}
+
+.gallery_grid .img_card .stautus_text {
+
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--color-placeholder);
 
 }
