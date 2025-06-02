@@ -150,6 +150,12 @@ body {
 
 }
 
+.promot_container .input::placeholder {
+
+    color: var(--color-placeholder);
+
+}
+
 .promot_container .input:focus {
 
     outline: none;
