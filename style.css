@@ -262,7 +262,13 @@ body {
 
 }
 
-.gallery_grid .img_card:hover {
+.gallery_grid .img_card.loading :is(.resalt_img, .form) {
+
+    display: none;
+
+}
+
+.gallery_grid .img_card:not(.loading):hover {
 
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
