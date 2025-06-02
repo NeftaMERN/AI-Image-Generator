@@ -201,11 +201,27 @@ body {
 .select_container :where(.costom_sellect , .gnereat_btn) {
 
     cursor: pointer;
+    padding: 12px 20px;
     background-color: var(--color-input);
     outline: none;
     border: 1px solid var(--color-border);
     font-size: 1rem;
     border-radius: 10px;
-    
+    transition: all 0.3s ease;
+
+}
+
+.select_container .gnereat_btn {
+
+    background: var(--color-gradient);
+    color: #fff;
+    font-weight: 500;
+
+}
+
+.select_container .gnereat_btn:hover {
+
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px 0 rgba(109, 40, 217, 0.3);
 
 }
