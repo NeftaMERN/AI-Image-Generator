@@ -67,3 +67,11 @@ body {
     align-items: center;
 
 }
+
+.header .logo_container {
+
+    align-items: center;
+    display: flex;
+    gap: 18px;
+
+}
