@@ -291,6 +291,11 @@ body.dark-theme .all_container {
 
 }
 
+.gallery_grid .img_card.loading .status_container,
+.gallery_grid .img_card.error .status_container {
+    display: flex;
+}
+
 .gallery_grid .img_card:where(.loadind, .error) .status_container {
 
     display: flex;
