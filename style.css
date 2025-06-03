@@ -274,10 +274,10 @@ body {
 
 }
 
-.gallery_grid .img_card.loading .spinner ,
-.gallery_grid .img_card.error .status_container i {
+.gallery_grid .img_card.loading .status_container i ,
+.gallery_grid .img_card.error .spinner {
 
-    display: block;
+    display: none;
 
 }
 
