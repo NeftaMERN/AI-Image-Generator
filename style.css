@@ -49,6 +49,12 @@ body {
 
 }
 
+body.dark-theme .all_container {
+
+    border: 1px solid var(--color-border);
+
+}
+
 .all_container {
 
     width: 900px;
@@ -220,6 +226,12 @@ body {
     font-size: 1rem;
     border-radius: 10px;
     transition: all 0.3s ease;
+
+}
+
+.dark-theme .select_container .costom_sellect {
+
+    color: #fff;
 
 }
 
