@@ -1,12 +1,9 @@
-
 const dark = document.getElementById("dark");
 
-const mood = () => {
+dark.addEventListener("click", mood = () => {
 
-   document.body.classList.toggle("dark-theme");
+    const isDark = document.body.classList.toggle("dark-theme");
 
-   dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
-}
+    dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
 
-
-dark.addEventListener("click", mood);
+});
