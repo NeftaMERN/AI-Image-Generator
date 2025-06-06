@@ -1,6 +1,10 @@
 const dark = document.getElementById("dark");
 const input = document.querySelector(".input");
 const promobtn = document.querySelector(".promot-btn");
+const form = document.querySelector(".form");
+const select_model = document.getElementById("select_model");
+const count_img = document.getElementById("count_img");
+const count_ratio = document.getElementById("count_ratio");
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
@@ -57,3 +61,18 @@ promobtn.addEventListener("click", () => {
     input.focus();
 
 });
+
+const handleFormSubimt = (e) => {
+
+    e.preventDefault();
+
+    const selectModle = select_model.value;
+    const countIMG = parseInt(count_img.value) || 1;
+    const countRatio = count_ratio.value || "1/1";
+    const promotText = input.value.trim();
+
+    console.log(selectModle, countIMG, countRatio, promotText);
+
+}
+
+form.addEventListener("submit", handleFormSubimt);
