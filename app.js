@@ -1,16 +1,19 @@
 const dark = document.getElementById("dark");
 
-window.addEventListener("DOMContentLoaded", () => {
+(() => {
 
     const saveDark = localStorage.getItem("theme");
 
-    if(saveDark == "dark") {
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-        document.body.classList.add("dark-theme");
+    const isDark = saveDark === "dark" || (!saveDark && systemDark); 
 
-    }
+    document.body.classList.toggle("dark-theme");
 
-})
+    dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+
+
+})() 
 
 dark.addEventListener("click", mood = () => {
 
