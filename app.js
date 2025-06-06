@@ -5,6 +5,7 @@ const form = document.querySelector(".form");
 const select_model = document.getElementById("select_model");
 const count_img = document.getElementById("count_img");
 const count_ratio = document.getElementById("count_ratio");
+const gallery_grid = document.querySelector(".gallery_grid");
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
@@ -62,6 +63,32 @@ promobtn.addEventListener("click", () => {
 
 });
 
+const cerateImageCard = (selectModle, countIMG, countRatio, promotText) => {
+
+    for (let i = 0; i < countIMG; i++) {
+
+        gallery_grid.innerHTML += `<div class="img_card error loading" id = "img-card-${i}" style = "count_ratio:${countRatio}" >
+
+                        <div class="status_container">
+
+                            <div class="spinner">
+
+                            </div>
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                            <p class="stautus_text">Generating...</p>
+
+                        </div>
+
+                        <img src="test.png" class="resalt_img">
+
+                    </div>`
+
+    }
+
+}
+
 const handleFormSubimt = (e) => {
 
     e.preventDefault();
@@ -71,7 +98,7 @@ const handleFormSubimt = (e) => {
     const countRatio = count_ratio.value || "1/1";
     const promotText = input.value.trim();
 
-    console.log(selectModle, countIMG, countRatio, promotText);
+    cerateImageCard(selectModle, countIMG, countRatio, promotText);
 
 }
 
