@@ -1,5 +1,17 @@
 const dark = document.getElementById("dark");
 
+window.addEventListener("DOMContentLoaded", () => {
+
+    const saveDark = localStorage.getItem("theme");
+
+    if(saveDark == "dark") {
+
+        document.body.classList.add("dark-theme");
+
+    }
+
+})
+
 dark.addEventListener("click", mood = () => {
 
     const isDark = document.body.classList.toggle("dark-theme");
