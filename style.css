@@ -260,7 +260,7 @@ body.dark-theme .all_container {
 
 }
 
-.form .gallery_grid {
+.form .gallery_grid:has(.img_card) {
 
     margin-top: 30px;
 
