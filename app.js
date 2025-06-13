@@ -1,3 +1,4 @@
+
 const dark = document.getElementById("dark");
 const input = document.querySelector(".input");
 const promobtn = document.querySelector(".promot-btn");
@@ -26,92 +27,102 @@ const examplePrompts = [
 ];
 
 (() => {
+  const saveDark = localStorage.getItem("theme");
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDark = saveDark === "dark" || (!saveDark && systemDark);
+  if (isDark) {
+    document.body.classList.add("dark-theme");
+  }
+  dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+})();
 
-    const saveDark = localStorage.getItem("theme");
-
-    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    const isDark = saveDark === "dark" || (!saveDark && systemDark); 
-
-    if( isDark ) {
-
-        document.body.classList.add("dark-theme");
-
-    }
-
-    dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
-
-
-})() 
-
-dark.addEventListener("click", mood = () => {
-
-    const isDark = document.body.classList.toggle("dark-theme");
-
-    dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-
+dark.addEventListener("click", () => {
+  const isDark = document.body.classList.toggle("dark-theme");
+  dark.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+  localStorage.setItem("theme", isDark ? "dark" : "light");
 });
 
 promobtn.addEventListener("click", () => {
-
-    const promot = examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
-
-    input.value = promot;
-    input.focus();
-
+  const promot = examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
+  input.value = promot;
+  input.focus();
 });
 
-const cerateImageCard = (selectModle, countIMG, countRatio, promotText) => {
+const generateImage = async (prompt) => {
+  const response = await fetch("https://api.replicate.com/v1/predictions", {
+    method: "POST",
+    headers: {
+      Authorization: "Token YOUR_API_TOKEN_HERE",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      version: "MODEL_VERSION_ID_HERE",
+      input: { prompt }
+    })
+  });
 
-    gallery_grid.innerHTML += ``
+  if (!response.ok) throw new Error("Initial request failed");
 
-    for (let i = 0; i < countIMG; i++) {
+  const data = await response.json();
+  let status = data.status;
+  let outputUrl;
 
-        gallery_grid.innerHTML += `<div class="img_card error loading" id = "img-card-${i}" style = "count_ratio:${countRatio}">
+  while (status !== "succeeded" && status !== "failed") {
+    await new Promise((r) => setTimeout(r, 1000));
+    const poll = await fetch(`https://api.replicate.com/v1/predictions/${data.id}`, {
+      headers: { Authorization: "Token YOUR_API_TOKEN_HERE" }
+    });
+    const pollData = await poll.json();
+    status = pollData.status;
+    if (status === "succeeded") outputUrl = pollData.output?.[0];
+  }
 
-                        <div class="status_container">
+  if (status === "failed" || !outputUrl) throw new Error("Image generation failed");
 
-                            <div class="spinner">
+  return outputUrl;
+};
 
-                            </div>
+const createImageCard = (id, prompt) => {
+  gallery_grid.innerHTML += `
+    <div class="img_card loading" id="img-card-${id}">
+      <div class="status_container">
+        <div class="spinner"></div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <p class="status_text">Generating...</p>
+      </div>
+      <img src="" class="resalt_img" style="display:none;">
+      <div class="img_daw">
+        <button class="img_dawnlod_btn"><i class="fa-solid fa-download"></i></button>
+      </div>
+    </div>`;
 
-                            <i class="fa-solid fa-triangle-exclamation"></i>
+  const card = document.getElementById(`img-card-${id}`);
 
-                            <p class="stautus_text">Generating...</p>
+  generateImage(prompt)
+    .then((url) => {
+      card.classList.remove("loading");
+      const img = card.querySelector(".resalt_img");
+      img.src = url;
+      img.style.display = "block";
+      card.querySelector(".status_text").style.display = "none";
+    })
+    .catch((err) => {
+      console.error(err);
+      card.classList.remove("loading");
+      card.classList.add("error");
+      card.querySelector(".status_text").textContent = "Failed to generate";
+    });
+};
 
-                        </div>
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  const promptText = input.value.trim();
+  const countIMG = parseInt(count_img.value) || 1;
+  if (!promptText) return;
 
-                        <img src="test.png" class="resalt_img">
+  for (let i = 0; i < countIMG; i++) {
+    createImageCard(i, promptText);
+  }
+};
 
-                        <div class="img_daw">
-
-                            <button class="img_dawnlod_btn">
-
-                                <i class="fa-solid fa-download"></i>
-
-                            </button>
-
-                        </div>
-
-                    </div>`
-
-    }
-
-}
-
-const handleFormSubimt = (e) => {
-
-    e.preventDefault();
-
-    const selectModle = select_model.value;
-    const countIMG = parseInt(count_img.value) || 1;
-    const countRatio = count_ratio.value || "1/1";
-    const promotText = input.value.trim();
-
-    cerateImageCard(selectModle, countIMG, countRatio, promotText);
-
-}
-
-form.addEventListener("submit", handleFormSubimt);
+form.addEventListener("submit", handleFormSubmit);
