@@ -65,9 +65,11 @@ promobtn.addEventListener("click", () => {
 
 const cerateImageCard = (selectModle, countIMG, countRatio, promotText) => {
 
+    gallery_grid.innerHTML += ``
+
     for (let i = 0; i < countIMG; i++) {
 
-        gallery_grid.innerHTML += `<div class="img_card error loading" id = "img-card-${i}" style = "count_ratio:${countRatio}" >
+        gallery_grid.innerHTML += `<div class="img_card error loading" id = "img-card-${i}" style = "count_ratio:${countRatio}">
 
                         <div class="status_container">
 
@@ -82,6 +84,16 @@ const cerateImageCard = (selectModle, countIMG, countRatio, promotText) => {
                         </div>
 
                         <img src="test.png" class="resalt_img">
+
+                        <div class="img_daw">
+
+                            <button class="img_dawnlod_btn">
+
+                                <i class="fa-solid fa-download"></i>
+
+                            </button>
+
+                        </div>
 
                     </div>`
 

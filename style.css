@@ -262,6 +262,12 @@ body.dark-theme .all_container {
 
 .form .gallery_grid {
 
+    margin-top: 30px;
+
+}
+
+.form .gallery_grid {
+
     display: grid;
     gap: 15px;
     margin-top: 30px;
